@@ -1,0 +1,79 @@
+.container {
+	width: 100%;
+}
+
+.wrapper {
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.header_repo {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 4rem;
+	padding: 0 2rem;
+}
+
+.title {
+	color: #242d38;
+	width: 30%;
+}
+
+.search {
+	width: 70%;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+}
+
+#reponame {
+	outline: none;
+	color: #242d38;
+	background: #f5f5f5;
+	font-size: 1rem;
+	padding: 2px 5px;
+	text-align: center;
+	letter-spacing: 1px;
+
+	border: none;
+	border-bottom: 1px solid gray;
+	width: 80%;
+}
+
+.search span {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 1px;
+	width: 0%; /* max: 80% */
+	background: #3d5aff;
+	transition: all 0.5s linear;
+}
+
+#reponame:focus + span, #reponame:active + span {
+	border-color: transparent;
+	width: 80%;
+	transform: translateX(0);
+	left: 0;
+}
+
+#buttonsearch {
+	padding: 2px 8px;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	background: #3d5aff;
+	color: white;
+}
+
+#buttonsearch:hover {
+	background: #5c74ff;
+}
+
+#buttonsearch:active {
+	background: #4354b5;
+}
