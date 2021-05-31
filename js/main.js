@@ -1,12 +1,15 @@
-import { verifyHasUser } from './loaduser.js';
-import { showErrorMessage } from './loaduser.js';
+import { verifyHasUser, showErrorMessage, setUser } from './loaduser.js';
 import { createRepoView } from './repos.js';
 
 if (!verifyHasUser()) {
 	showErrorMessage();
 }
 
+const user = localStorage.getItem('user-to-github');
+document.title = user;
+
 const buttonSearch = document.getElementById('buttonsearch');
+const buttonNewUser = document.getElementById('newuser');
 const inputSearch = document.getElementById('reponame');
 const repoContainer = document.getElementById('repos');
 
@@ -32,7 +35,7 @@ async function verifyUser() {
 	}
 }
 
-async function searchRepos(v) {
+async function searchRepos() {
 	const t = await verifyHasUser();
 	if (!t) {
 		return false;
@@ -41,7 +44,11 @@ async function searchRepos(v) {
 	// returns all repos
 	const repos = await getRepositories();
 
-	const searchValue = v || document.getElementById('reponame').value;
+	const searchValue = document.getElementById('reponame').value;
+
+	if (!searchValue.length > 0) {
+		return false;
+	}
 
 	// returns repo that contains the searchValue
 	repoContainer.innerHTML = null;
@@ -63,8 +70,6 @@ async function searchRepos(v) {
 
 verifyUser();
 
+buttonNewUser.addEventListener('click', () => setUser());
 buttonSearch.addEventListener('click', searchRepos);
 inputSearch.addEventListener('keydown', (e) =>  e.key === "Enter" && searchRepos());
-
-
-searchRepos('conf');

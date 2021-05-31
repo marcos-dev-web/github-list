@@ -1,4 +1,5 @@
 const url = 'https://api.github.com/users/';
+const reposView = document.getElementById('repos');
 
 async function verifyUserIsValid(user) {
 	const regex = /\?\/|\/|=|,|\^|&|#|\*/g;
@@ -35,13 +36,27 @@ export async function verifyHasUser() {
 	}
 }
 
-function saveUser(username, oldContainer) {
+async function saveUser(username, oldContainer) {
+	const t = await verifyUserIsValid(username);
+	if (!t) {
+		if (oldContainer) {
+			oldContainer.remove()
+		}
+		showErrorMessage();
+		return false;
+	}
 	window.localStorage.setItem('user-to-github', String(username));
 	oldContainer.remove();
+	reposView.innerHTML = null;
+	document.title = username;
 }
 
 export function setUser(oldContainer) {
-	oldContainer.remove();
+
+	if (oldContainer) {
+		oldContainer.remove();
+	}
+
 	const container = document.createElement('main');
 	const box = document.createElement('div');
 	const text = document.createElement('p');

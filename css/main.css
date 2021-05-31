@@ -19,13 +19,14 @@
 
 .title {
 	color: #242d38;
-	width: 30%;
+	width: 20%;
 }
 
 .search {
-	width: 70%;
+	flex: 1;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	position: relative;
 }
 
@@ -40,7 +41,7 @@
 
 	border: none;
 	border-bottom: 1px solid gray;
-	width: 80%;
+	width: 70%;
 }
 
 .search span {
@@ -49,19 +50,19 @@
 	left: 50%;
 	transform: translateX(-50%);
 	height: 1px;
-	width: 0%; /* max: 80% */
+	width: 0%; /* max: 70% */
 	background: #3d5aff;
 	transition: all 0.5s linear;
 }
 
 #reponame:focus + span, #reponame:active + span {
 	border-color: transparent;
-	width: 80%;
+	width: 70%;
 	transform: translateX(0);
 	left: 0;
 }
 
-#buttonsearch {
+.button {
 	padding: 2px 8px;
 	border-radius: 4px;
 	border: none;
@@ -70,10 +71,10 @@
 	color: white;
 }
 
-#buttonsearch:hover {
+.button:hover {
 	background: #5c74ff;
 }
 
-#buttonsearch:active {
+.button:active {
 	background: #4354b5;
 }

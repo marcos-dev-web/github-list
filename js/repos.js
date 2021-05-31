@@ -9,7 +9,7 @@ export function createRepoView(json) {
       <div class="description">
         <h4>Description</h4>
         ${json["description"] ? `<p>${json.description}</p>` : ""}
-        <p><strong>Language:</strong> ${json.language}</p>
+        ${json["language"] ? `<p><strong>Language:</strong> ${json.language}</p>`: ""}
       </div>
 
       <div class="repo-git">
